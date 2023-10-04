@@ -19,12 +19,3 @@ BEGIN
         L.DateBorrowed;
 
 END;
-
-
-
-
-DECLARE @StartDate DATE = '2022-01-01';  -- Replace with your desired start date
-DECLARE @EndDate DATE = '2022-12-31';    -- Replace with your desired end date
-
--- Execute the stored procedure with parameters
-EXEC sp_BorrowedBooksReport @StartDate, @EndDate;
