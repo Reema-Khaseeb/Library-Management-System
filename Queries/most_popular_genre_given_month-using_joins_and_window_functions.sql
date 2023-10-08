@@ -13,7 +13,7 @@ WITH MonthlyGenreCounts AS (
         FROM
             Loan AS L
         WHERE
-            MONTH(L.DateBorrowed) = @GivenMonth
+            BorrowMonth = @GivenMonth
     ) AS BorrowMonthTable
     INNER JOIN
         Book AS B ON BorrowMonthTable.BookID = B.BookID
