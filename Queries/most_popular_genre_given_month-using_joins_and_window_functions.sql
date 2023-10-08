@@ -2,18 +2,23 @@ DECLARE @GivenMonth INT = 5;
 
 WITH MonthlyGenreCounts AS (
     SELECT
-        MONTH(L.DateBorrowed) AS BorrowMonth,
+        BorrowMonth,
         B.Genre,
         COUNT(*) AS GenreCount,
-        DENSE_RANK() OVER (PARTITION BY MONTH(L.DateBorrowed) ORDER BY COUNT(*) DESC) AS GenreRank
-    FROM
-        Loan AS L
+        DENSE_RANK() OVER (PARTITION BY BorrowMonth ORDER BY COUNT(*) DESC) AS GenreRank
+    FROM (
+        SELECT
+            MONTH(L.DateBorrowed) AS BorrowMonth,
+            L.BookID
+        FROM
+            Loan AS L
+        WHERE
+            MONTH(L.DateBorrowed) = @GivenMonth
+    ) AS BorrowMonthTable
     INNER JOIN
-        Book AS B ON L.BookID = B.BookID
-    WHERE
-        MONTH(L.DateBorrowed) = @GivenMonth
+        Book AS B ON BorrowMonthTable.BookID = B.BookID
     GROUP BY
-        MONTH(L.DateBorrowed), B.Genre
+        BorrowMonth, B.Genre
 )
 
 SELECT
