@@ -114,4 +114,4 @@ Design and implement a relational database using MS SQL that supports the librar
 
 
 ## ERD:
-![LibrarySystemERD](https://github.com/Reema-Khaseeb/Library-Management-System/assets/68278258/c74c503e-89bd-432a-ad7e-234af90d2d67)
+![Library System ERD](./images/LibrarySystemERD.jpg)
