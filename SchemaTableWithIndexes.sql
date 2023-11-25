@@ -11,6 +11,7 @@ CREATE TABLE Book (
     ShelfLocation VARCHAR(50) NULL,
     CurrentStatus CHAR(10) NULL
 );
+CREATE INDEX Book_CurrentStatus_index ON Book (CurrentStatus);
 
 CREATE TABLE Borrower (
     BorrowerID INT PRIMARY KEY NOT NULL,
@@ -20,7 +21,6 @@ CREATE TABLE Borrower (
     DateOfBirth DATE NULL,
     MembershipDate DATE NULL
 );
-CREATE UNIQUE INDEX Borrower_Email_index ON Borrower (Email);
 
 CREATE TABLE Loan (
     LoanID INT PRIMARY KEY IDENTITY(1,1) NOT NULL,
